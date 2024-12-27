@@ -4,10 +4,10 @@
 
 #include "map.h"
 
-using namespace std;
 
 //以下搬运菜鸟网站的模拟实现程序
 #include <iostream>
+#include "map.h"
 #include <string>
 
 void test03() {
@@ -20,8 +20,10 @@ void test03() {
     employees["Charlie"] = 35;
 
     // 遍历 map 并打印员工信息
-    for (std::Map<std::string, int>::iterator it = employees.begin(); it != employees.end(); ++it) {
+    //原先的for循环初始项Map<std::string, int>::iterator it = employees.begin()的定义改为auto，之后才能运行
+    //否则报错error: 'iterator' is not a member of 'Map<std::__cxx11::basic_string<char>, int>'
+    //因为map.h中没有创建迭代器，但是这里auto补充的是什么呢
+    for (auto it = employees.begin(); it != employees.end(); ++it) {
         std::cout << it->first << " is " << it->second << " years old." << std::endl;
     }
-
 }

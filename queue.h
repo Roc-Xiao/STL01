@@ -8,7 +8,7 @@
 template <typename T>
 class Queue {
 private:
-    std::deque<T> container;  // 使用 deque 作为底层容器
+    std::deque<T> container;  // 使用 deque 作为底层容器, 双端数组更符合queue
 
 public:
     // 构造函数
@@ -49,16 +49,8 @@ public:
     }
 
     // 获取队列中的元素数量
-    size_t size() const {
+    [[nodiscard]] size_t size() const {
         return container.size();
-    }
-
-    // 打印队列元素（调试用）
-    void print() const {
-        for (const auto& elem : container) {
-            std::cout << elem << " ";
-        }
-        std::cout << std::endl;
     }
 
     // 析构函数，使用默认的 deque 析构

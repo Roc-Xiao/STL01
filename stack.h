@@ -6,6 +6,7 @@
 #define STACK_H
 
 #include <iostream>
+#include <stdexcept>
 #include <vector>
 
 template <typename T>  //将Stack定义为模板类（出现报错“Stack” is not a template）

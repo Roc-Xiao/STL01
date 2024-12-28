@@ -2,7 +2,7 @@
 // Created by 肖鹏楊 on 24-12-21.
 //
 
-#include "Stack.h"
+#include "stack.h"
 #include <iostream>
 
 // 以下是模拟实现程序

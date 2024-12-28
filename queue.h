@@ -1,57 +1,70 @@
-//
-// Created by 91675 on 2024/12/24.
-//
-
 #ifndef QUEUE_H
 #define QUEUE_H
 
 #include <iostream>
 #include <deque>
+#include <stdexcept>
 
-using namespace std;
-
+template <typename T>
 class Queue {
 private:
-    deque<int> data;  //将vector优化为deque，更符合队列类的特征
+    std::deque<T> container;  // 使用 deque 作为底层容器
 
 public:
-    //创建队列
-    Queue() {
-        data.clear();
+    // 构造函数
+    Queue() = default;
+
+    // 入队操作
+    void push(const T& value) {
+        container.push_back(value);
     }
 
-    //访问队头元素
-    int front() {
-        if (data.empty()) {
-            throw out_of_range("队列已空");
-        }
-        return data.front();
-    }
-
-    //入队
-    void push(int value) {
-        data.push_back(value);
-    }
-
-    //出队
+    // 出队操作
     void pop() {
-        if (data.empty()) {
-            throw out_of_range("队列已空");
+        if (empty()) {
+            throw std::out_of_range("Queue is empty");
         }
-        data.pop_front();
+        container.pop_front();
     }
 
-    //清空队列
-    void clear() {
-        data.clear();
+    // 获取队首元素
+    T& front() {
+        if (empty()) {
+            throw std::out_of_range("Queue is empty");
+        }
+        return container.front();
     }
 
-    //判断队列是否为空
-    bool isEmpty() {
-        return data.empty();
+    // 获取队尾元素
+    T& back() {
+        if (empty()) {
+            throw std::out_of_range("Queue is empty");
+        }
+        return container.back();
     }
+
+    // 检查队列是否为空
+    bool empty() const {
+        return container.empty();
+    }
+
+    // 获取队列中的元素数量
+    size_t size() const {
+        return container.size();
+    }
+
+    // 打印队列元素（调试用）
+    void print() const {
+        for (const auto& elem : container) {
+            std::cout << elem << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    // 析构函数，使用默认的 deque 析构
+    ~Queue() = default;
 };
+
 void test02();
 
-
-#endif //QUEUE_H
+#endif // QUEUE_H

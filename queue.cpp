@@ -4,14 +4,13 @@
 
 #include "queue.h"
 
-#include <queue>
 
 using namespace std;
 
 //以下搬运菜鸟网站的模拟实现程序
 void test02() {
     // 创建一个整数队列
-    queue<int> q;
+    Queue<int> q;
 
     // 向队列中添加元素
     q.push(10);
